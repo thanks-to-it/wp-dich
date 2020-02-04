@@ -7,6 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit24763ad7f72f50fe3e9148680f2cd91d
 {
     public static $classMap = array (
+        'Thanks_To_IT\\WP_DICH\\DIC' => __DIR__ . '/../..' . '/src/class-dic.php',
         'Thanks_To_IT\\WP_DICH\\DIC_Interface' => __DIR__ . '/../..' . '/src/class-dic-interface.php',
         'Thanks_To_IT\\WP_DICH\\League_Container_DIC' => __DIR__ . '/../..' . '/src/class-league-container-dic.php',
         'Thanks_To_IT\\WP_DICH\\WP_DICH' => __DIR__ . '/../..' . '/src/class-wp-dich.php',
