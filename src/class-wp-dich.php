@@ -42,7 +42,7 @@ if ( ! class_exists( 'ThanksToIT\WPDICH\WP_DICH' ) ) {
 		 *
 		 * @return bool
 		 */
-		function is_callable_object( $function_to_add ) {
+		private function is_callable_object( $function_to_add ) {
 			if (
 				! is_array( $function_to_add ) ||
 				! is_object( $function_to_add[0] )
@@ -62,7 +62,7 @@ if ( ! class_exists( 'ThanksToIT\WPDICH\WP_DICH' ) ) {
 		 *
 		 * @return bool|mixed
 		 */
-		function get_object_alias( $function_to_add ) {
+		private function get_object_alias( $function_to_add ) {
 			if (
 				! is_array( $function_to_add ) ||
 				! is_string( $function_to_add[0] ) ||
@@ -84,7 +84,7 @@ if ( ! class_exists( 'ThanksToIT\WPDICH\WP_DICH' ) ) {
 		 *
 		 * @return array
 		 */
-		function get_callback( $callback ) {
+		private function get_callback( $callback ) {
 			$object_alias          = $this->get_object_alias( $callback );
 			$final_function_to_add = $callback;
 			if ( false !== $object_alias ) {
