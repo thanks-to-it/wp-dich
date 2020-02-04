@@ -1,6 +1,10 @@
 # wp-dich
 Dependency Injection Container for WordPress Hook
 
+## Introduction
+Have you ever wanted to know the [best way to initialize a class in WordPress](https://wordpress.stackexchange.com/questions/70055/best-way-to-initiate-a-class-in-a-wp-plugin)?
+Of course there is no bullet proof answer to that, but what if there was a way to initialize a class smartly, only when necessary, for example only inside a WordPress hook callback?
+
 ## Getting Started
 `WP_DICH()` class needs a Dependency Injection Container to get started.
 You can use any Dependency Injection library you like, but instead of passing it directly as the constructor param you should pass a class that implements a Interface `\ThanksToIT\WPDICH\DIC_Interface`.
