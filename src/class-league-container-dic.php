@@ -32,5 +32,12 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\League_Container_DIC' ) ) {
 			return $object;
 		}
 
+		/**
+		 * {@inheritdoc}
+		 */
+		public function has( $id ) {
+			return parent::has( $id );
+		}
+
 	}
 }

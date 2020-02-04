@@ -48,6 +48,13 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\DIC' ) ) {
 		}
 
 		/**
+		 * {@inheritdoc}
+		 */
+		function has( $id ) {
+			return $this->offsetExists( $id );
+		}
+
+		/**
 		 * Configure the container using the given container configuration objects.
 		 *
 		 * @version 1.0.0

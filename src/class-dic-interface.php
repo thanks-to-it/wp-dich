@@ -25,5 +25,15 @@ if ( ! interface_exists( 'Thanks_To_IT\WP_DICH\DIC_Interface' ) ) {
 		 * @return mixed Entry.
 		 */
 		public function get( $id );
+
+		/**
+		 * Checks whether alias exists as definition.
+		 *
+		 * @param string $id
+		 *
+		 * @return boolean
+		 */
+		public function has( $id );
+
 	}
 }

@@ -33,26 +33,6 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		}
 
 		/**
-		 * is_callable_object.
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param callable $function_to_add
-		 *
-		 * @return bool
-		 */
-		private function is_callable_object( $function_to_add ) {
-			if (
-				! is_array( $function_to_add ) ||
-				! is_object( $function_to_add[0] )
-			) {
-				return false;
-			}
-			return true;
-		}
-
-		/**
 		 * get_object_alias.
 		 *
 		 * @version 1.0.0
@@ -66,7 +46,7 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 			if (
 				! is_array( $function_to_add ) ||
 				! is_string( $function_to_add[0] ) ||
-				$this->is_callable_object( $function_to_add )
+				is_object( $function_to_add[0] )
 			) {
 				return false;
 			}
@@ -87,12 +67,36 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		private function get_callback( $callback ) {
 			$object_alias          = $this->get_object_alias( $callback );
 			$final_function_to_add = $callback;
-			if ( false !== $object_alias ) {
+			if (
+				false !== $object_alias &&
+				$this->di_container->has( $object_alias )
+			) {
 				$object                = $this->di_container->get( $object_alias );
 				$final_function_to_add = array( $object, $callback[1] );
 			}
 			return $final_function_to_add;
 		}
+
+		/**
+		 * callable_is_valid_for_container.
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $function_to_add
+		 *
+		 * @return bool|\WP_Error
+		 */
+		/*private function check_if_callable_is_valid_for_container( $function_to_add ) {
+			if (
+				false !== ( $obj_alias = $this->get_object_alias( $function_to_add ) ) ||
+				! $this->di_container->has( $obj_alias )
+			) {
+				return new \WP_Error( 'wp_dich_no_value_found', sprintf( 'Container doesn\'t have a value stored for the "%s" key.', $obj_alias ) );
+			} else {
+				return true;
+			}
+		}*/
 
 		/**
 		 * add_action.
@@ -104,6 +108,7 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		 * @param callable $function_to_add
 		 * @param int $priority
 		 * @param int $accepted_args
+		 *
 		 */
 		public function add_action( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
 			$this->remove_from_callbacks( $tag, $function_to_add, $priority );
@@ -126,10 +131,18 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		 * @param callable $function_to_add
 		 * @param int $priority
 		 * @param int $accepted_args
+		 *
+		 * @return \WP_Error|boolean
 		 */
 		public function add_filter( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
+			/*if (
+				false !== ( $obj_alias = $this->get_object_alias( $function_to_add ) ) ||
+				! $this->di_container->has( $obj_alias )
+			) {
+				return new \WP_Error( 'wp_dich_no_value_found', sprintf( 'Container doesn\'t have a value stored for the "%s" key.', $obj_alias ) );
+			}*/
 			$this->remove_from_callbacks( $tag, $function_to_add, $priority );
-			add_filter( $tag, function () use ( $tag, $function_to_add, $priority ) {
+			return add_filter( $tag, function () use ( $tag, $function_to_add, $priority ) {
 				if ( $this->need_to_remove( $function_to_add, $tag, $priority ) ) {
 					return func_get_args()[0];
 				}
