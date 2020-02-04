@@ -7,9 +7,6 @@ Of course there is no bullet proof answer to that, but what if there was a way t
 
 Besides that, as WP_DICH works with a Dependency Injection Container, you'll benefit from all the pros it can offer
 
-## Problem
-WordPress offers some ways to
-
 ## Getting Started
 `WP_DICH()` class needs a Dependency Injection Container to get started.
 You can use any Dependency Injection library you like, but instead of passing it directly as the constructor param you should pass a class that implements a Interface `\Thanks_To_IT\WP_DICH\DIC_Interface`.
