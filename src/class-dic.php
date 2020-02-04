@@ -44,7 +44,7 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\DIC' ) ) {
 		 * {@inheritdoc}
 		 */
 		public function get( $id ) {
-			return $this[$id];
+			return $this[ $id ];
 		}
 
 		/**
@@ -143,5 +143,4 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\DIC' ) ) {
 			};
 		}
 	}
-}
 }
