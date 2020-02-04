@@ -3,7 +3,7 @@ Dependency Injection Container for WordPress Hooks
 
 ## Introduction
 Have you ever wanted to know the [best way to initialize a class in WordPress](https://wordpress.stackexchange.com/questions/70055/best-way-to-initiate-a-class-in-a-wp-plugin)?
-Of course there is no bullet proof answer to that, but what if there was a way to initialize a class in a smart way? Only when necessary? For example only when a WordPress hook is run? This is what **WP_DICH** offers you.
+Of course there is no bullet proof answer to that, but what if there was a way to initialize a class in a smart way? Only when necessary? Only when a WordPress hook is run for instance? This is what **WP_DICH** offers you.
 
 Besides that, as **WP_DICH** works with a Dependency Injection Container, you'll benefit from all the pros it can offer
 
