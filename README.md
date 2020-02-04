@@ -17,7 +17,21 @@ $di_container = new \ThanksToIT\WPDICH\League_Container_DIC();
 $wp_dich = new \ThanksToIT\WPDICH\WP_DICH( $di_container );
 ```
 
+### Setup your Dependency Injection Container
+Imagine you have a class `Your_Project\Object`.
+The Dependency Injection Container has to know which class you want to lazy load. 
+```php
+$di_container->add('object', Your_Project\Object::class);
+```
+
 ### Using WP_DICH Hooks
+You can use the WordPress hooks functions you are used to like:
+- add_action
+- add_filter
+- remove_action
+- remove_filter
+
+The following example will lazy load the class 'object' only inside the `wp_footer` hook.
 ```php
 $wp_dich->add_action( 'wp_footer', array( 'object', 'any_method' ) );
 ```
