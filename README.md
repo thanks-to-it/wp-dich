@@ -9,7 +9,7 @@ Besides that, as **WP_DICH** works with a Dependency Injection Container, you'll
 
 ## Getting Started
 `WP_DICH()` class needs a Dependency Injection Container to get started.
-You can use any Dependency Injection library you like, but instead of passing it directly as the constructor param you should pass a class that implements a Interface `\Thanks_To_IT\WP_DICH\DIC_Interface`.
+You can use any Dependency Injection library you like, but instead of passing it directly as the constructor param you should pass a class that implements a `\Thanks_To_IT\WP_DICH\DIC_Interface` Interface.
 
 This class should have at least 1 method `get()` which will be used to get the object you'll need on your hooks.
 And probably you don't even need to create this method because most of Dependency Injection Libraries already have them.
