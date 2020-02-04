@@ -9,7 +9,6 @@ class ComposerStaticInit24763ad7f72f50fe3e9148680f2cd91d
     public static $classMap = array (
         'ThanksToIT\\WPDICH\\DIC_Interface' => __DIR__ . '/../..' . '/src/class-dic-interface.php',
         'ThanksToIT\\WPDICH\\League_Container_DIC' => __DIR__ . '/../..' . '/src/class-league-container-dic.php',
-        'ThanksToIT\\WPDICH\\Service_Provider' => __DIR__ . '/../..' . '/src/class-service-provider.php',
         'ThanksToIT\\WPDICH\\WP_DICH' => __DIR__ . '/../..' . '/src/class-wp-dich.php',
     );
 
