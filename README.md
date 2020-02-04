@@ -11,10 +11,10 @@ Besides that, as **WP_DICH** works with a Dependency Injection Container, you'll
 `WP_DICH()` class needs a Dependency Injection Container to get started.
 You can use any Dependency Injection library you like, but instead of passing it directly as the constructor param you should pass a class that implements a `\Thanks_To_IT\WP_DICH\DIC_Interface` Interface.
 
-This class should have at least 1 method `get()` which will be used to get the object you'll need on your hooks.
-And probably you don't even need to create this method because most of Dependency Injection Libraries already have them.
+This class should have at least 1 method `get()` which will be used to get the object you want.
+Probably you don't even need to create this method because most of Dependency Injection Libraries already have them.
 
-Anyway, there is already one class `\Thanks_To_IT\WP_DICH\League_Container_DIC` created as an example of how it could work using a Dependency Injection Library called [Container](https://github.com/thephpleague/container), from The PHP League.
+Anyway, there is already a class `\Thanks_To_IT\WP_DICH\League_Container_DIC` created as an example of how would be the implementation of a Dependency Injection Library called [Container](https://github.com/thephpleague/container), from The PHP League, but remember you can use any other you want, like [PHP-DI](http://php-di.org/) for example.
 
 ### Initializing WP_DICH Class
 Example of how you can initialize WP_DICH class using [thephpleague/container](https://github.com/thephpleague/container) as the Depenceny Injection Container library.
