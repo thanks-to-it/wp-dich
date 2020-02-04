@@ -11,7 +11,7 @@ And probably you don't even need to create this method because most of Dependenc
 Anyway, there is already one class `\ThanksToIT\WPDICH\League_Container_DIC` created as an example of how it could work using a Dependency Injection Library called [Container](https://github.com/thephpleague/container), from The PHP League.
 
 ### Initializing WP_DICH Class
-Example of how you can initialize WP_DICH class using thephpleague/container as the Depenceny Injection Container library.
+Example of how you can initialize WP_DICH class using [thephpleague/container](https://github.com/thephpleague/container) as the Depenceny Injection Container library.
 ```php
 $di_container = new \ThanksToIT\WPDICH\League_Container_DIC();
 $wp_dich = new \ThanksToIT\WPDICH\WP_DICH( $di_container );
