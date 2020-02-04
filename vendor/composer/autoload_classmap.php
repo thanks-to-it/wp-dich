@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ThanksToIT\\WPDICH\\DIC_Interface' => $baseDir . '/src/class-dic-interface.php',
-    'ThanksToIT\\WPDICH\\League_Container_DIC' => $baseDir . '/src/class-league-container-dic.php',
-    'ThanksToIT\\WPDICH\\WP_DICH' => $baseDir . '/src/class-wp-dich.php',
+    'Thanks_To_IT\\WP_DICH\\DIC_Interface' => $baseDir . '/src/class-dic-interface.php',
+    'Thanks_To_IT\\WP_DICH\\League_Container_DIC' => $baseDir . '/src/class-league-container-dic.php',
+    'Thanks_To_IT\\WP_DICH\\WP_DICH' => $baseDir . '/src/class-wp-dich.php',
 );

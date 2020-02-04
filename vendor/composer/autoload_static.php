@@ -7,9 +7,9 @@ namespace Composer\Autoload;
 class ComposerStaticInit24763ad7f72f50fe3e9148680f2cd91d
 {
     public static $classMap = array (
-        'ThanksToIT\\WPDICH\\DIC_Interface' => __DIR__ . '/../..' . '/src/class-dic-interface.php',
-        'ThanksToIT\\WPDICH\\League_Container_DIC' => __DIR__ . '/../..' . '/src/class-league-container-dic.php',
-        'ThanksToIT\\WPDICH\\WP_DICH' => __DIR__ . '/../..' . '/src/class-wp-dich.php',
+        'Thanks_To_IT\\WP_DICH\\DIC_Interface' => __DIR__ . '/../..' . '/src/class-dic-interface.php',
+        'Thanks_To_IT\\WP_DICH\\League_Container_DIC' => __DIR__ . '/../..' . '/src/class-league-container-dic.php',
+        'Thanks_To_IT\\WP_DICH\\WP_DICH' => __DIR__ . '/../..' . '/src/class-wp-dich.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

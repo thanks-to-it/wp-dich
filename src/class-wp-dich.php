@@ -7,13 +7,13 @@
  * @author  Thanks to IT
  */
 
-namespace ThanksToIT\WPDICH;
+namespace Thanks_To_IT\WP_DICH;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( ! class_exists( 'ThanksToIT\WPDICH\WP_DICH' ) ) {
+if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 
 	class WP_DICH {
 

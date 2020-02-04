@@ -7,13 +7,13 @@
  * @author  Thanks to IT
  */
 
-namespace ThanksToIT\WPDICH;
+namespace Thanks_To_IT\WP_DICH;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( ! interface_exists( 'ThanksToIT\WPDICH\DIC_Interface' ) ) {
+if ( ! interface_exists( 'Thanks_To_IT\WP_DICH\DIC_Interface' ) ) {
 
 	interface DIC_Interface {
 

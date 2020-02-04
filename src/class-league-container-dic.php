@@ -9,7 +9,7 @@
  * @author  Thanks to IT
  */
 
-namespace ThanksToIT\WPDICH;
+namespace Thanks_To_IT\WP_DICH;
 
 use League\Container\Definition\DefinitionInterface;
 
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( ! class_exists( 'ThanksToIT\WPDICH\League_Container_DIC' ) ) {
+if ( ! class_exists( 'Thanks_To_IT\WP_DICH\League_Container_DIC' ) ) {
 
 	class League_Container_DIC extends \League\Container\Container implements DIC_Interface {
 
