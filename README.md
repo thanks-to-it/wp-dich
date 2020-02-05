@@ -56,7 +56,7 @@ $dic['any_class_alias'] = function () {
 };
 ```
 
-Now if you create your hook using the class alias you've configured on the container as the first parameter of the array, instead of calling a static method, it will load your class only when `wp_footer` hook is run and will call your `method_a` just fine
+Now if you create your hook using the class alias you've configured on the container as the first parameter of the array, instead of calling a static method, it will load your class only when `wp_footer` hook is run and then will call your `method_a`
 ```php
 $dich->add_action( 'wp_footer', array( 'any_class_alias', 'method_a') );
 ```
