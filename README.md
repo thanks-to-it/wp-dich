@@ -38,7 +38,7 @@ class Any_Class{
 add_action( 'wp_footer', array('Any_Class', 'method_a') );
 ```
 
-### :ok_hand: The WP_DICH Solution
+### :+1: The WP_DICH Solution
 With **WP_DICH** you can combine the advantage of the Object Method Call, using a non static method, with the benefits of loading the class only when it's required. Check how it's simple:
 
 First you need to pass a Dependency Injection Container Interface to `WP_DICH()`.  
