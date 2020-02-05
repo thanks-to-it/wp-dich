@@ -2,42 +2,78 @@
 Dependency Injection Container for WordPress Hooks
 
 ## Introduction
-Have you ever wanted to know the [best way to initialize a class in WordPress](https://wordpress.stackexchange.com/questions/70055/best-way-to-initiate-a-class-in-a-wp-plugin)?
-Of course there is no bullet proof answer to that, but what if there was a way to initialize a class in a smart way? Only when necessary? Only when a WordPress hook is run for instance? This is what **WP_DICH** offers you.
+**WP_DICH** offers a way to use WordPress hooks in a smart way, allowing lazy loading, making classes be loaded only when required.
 
-Besides that, as **WP_DICH** works with a Dependency Injection Container, you'll benefit from all the pros it can offer
+## The Challenge
+Let's suppose you simply want to call a method `method_a()` from a class `Any_Class` only when a specific WordPress hook is run. How you'd do it? There are at least 3 ways that come to my mind: 
 
-## Getting Started
-`WP_DICH()` class needs a Dependency Injection Container to get started.
-You can use any Dependency Injection library you like, but instead of passing it directly as the constructor param you should pass a class that implements a `\Thanks_To_IT\WP_DICH\DIC_Interface` Interface.
-
-This class should have at least 1 method `get()` which will be used to get the object you want.
-Probably you don't even need to create this method because most of Dependency Injection Libraries already have them.
-
-Anyway, there is already a class `\Thanks_To_IT\WP_DICH\League_Container_DIC` created as an example of how would be the implementation of a Dependency Injection Library called [Container](https://github.com/thephpleague/container), from The PHP League, but remember you can use any other you want, like [PHP-DI](http://php-di.org/) for example.
-
-### Initializing WP_DICH Class
-Example of how you can initialize WP_DICH class using [thephpleague/container](https://github.com/thephpleague/container) as the Depenceny Injection Container library.
+#### Object Method Call :-1:
+The problem here is you are initializing `Any_Class()` before it's necessary, as you only need the method on `wp_footer` hook.  
 ```php
-$di_container = new \Thanks_To_IT\WP_DICH\League_Container_DIC();
-$wp_dich = new \Thanks_To_IT\WP_DICH\WP_DICH( $di_container );
+class Any_Class{
+	public function method_a(){}
+}
+$any_class = new Any_Class();
+add_action( 'wp_footer', array( $any_class, 'method_a') );
 ```
 
-### Setup your Dependency Injection Container
-Imagine you have a class `Your_Project\Object`.
-The Dependency Injection Container has to know which class you want to lazy load. 
+#### Using Anonymous Functions :-1: 
+The disadvantage here is you're not able to remove the action with `remove_action()` 
 ```php
-$di_container->add('object', Your_Project\Object::class);
+class Any_Class{
+	public function method_a(){}
+}
+add_action( 'wp_footer', function(){
+	$any_class = new Any_Class();
+	$any_class->method_a();
+});
 ```
 
-### Using WP_DICH Hooks
-You can use the WordPress hooks functions you are used to like:
-- add_action
-- add_filter
-- remove_action
-- remove_filter
-
-The following example will lazy load the class 'object' only inside the `wp_footer` hook.
+#### Using Static Methods :-1: 
+With the Static Methods approach, at least your class is loaded at the proper time, but quite often, from a design standpoint, it's better to stick to non-static methods. You can't override them, they are more difficult to test and you end up having to design other things around it as static too. 
 ```php
-$wp_dich->add_action( 'wp_footer', array( 'object', 'any_method' ) );
+class Any_Class{
+	public static function method_a(){}
+}
+add_action( 'wp_footer', array('Any_Class', 'method_a') );
 ```
+
+#### The WP_DICH Solution :+1:
+With **WP_DICH** you can combine the advantage of the Object Method Call, using a non static method, with the benefits of loading the class only when it's required. Check how it's simple:
+
+First you need to pass a Dependency Injection Container Interface to `WP_DICH()`.  
+```php
+$dic  = new \Thanks_To_IT\WP_DICH\DIC();
+$dich = new \Thanks_To_IT\WP_DICH\WP_DICH( $dic );
+```
+> WP_DICH already offers a small Dependency Injection Container but you can use any library you want, like []thephpleague/container](https://github.com/thephpleague/container) or [php-di](http://php-di.org/) for example. You just have to implement a `DIC_Interface` with 2 methods, `get()` and `has()`
+
+Then you just have to setup your container as you like:
+```php
+$dic['any_class_alias'] = function () {
+	return new Any_Class();
+};
+```
+
+Now if you create your hook using the class alias you've configured on the container as the first parameter of the array, instead of calling a static method, it will load your class only when `wp_footer` hook is run and will call your `method_a` just fine
+```php
+$dich->add_action( 'wp_footer', array( 'any_class_alias', 'method_a') );
+```
+
+## WP_DICH hooks
+You can use the WordPress hook functions you are used to, like:
+
+- `$dich->add_action`
+- `$dich->add_filter`
+- `$dich->remove_action`
+- `$dich->remove_filter`
+
+## Services
+As we are now using a Dependency Injection Container Library we may benefit from some interesting features, like services, allowing to instantiate your classes only once. Yes, no need to think about Singletons anymore.
+
+```php
+$dic['any_class_alias'] = $dic->service( function () {
+	return new Any_Class();
+} );
+```
+Now everytime you call for **'any_class_alias'** the same object will be returned instead of creating a new one every time.
