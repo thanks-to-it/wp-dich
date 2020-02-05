@@ -7,7 +7,7 @@ Dependency Injection Container for WordPress Hooks
 ## The Challenge
 Let's suppose you simply want to call a method `method_a()` from a class `Any_Class` only when a specific WordPress hook is run. How you'd do it? There are at least 3 ways that come to my mind: 
 
-#### Object Method Call :-1:
+- #### Object Method Call :-1:
 The problem here is you are initializing `Any_Class()` before it's necessary, as you only need the method on `wp_footer` hook.  
 ```php
 class Any_Class{
@@ -17,7 +17,7 @@ $any_class = new Any_Class();
 add_action( 'wp_footer', array( $any_class, 'method_a') );
 ```
 
-#### Using Anonymous Functions :-1: 
+- #### Using Anonymous Functions :-1: 
 The disadvantage here is you're not able to remove the action with `remove_action()` 
 ```php
 class Any_Class{
@@ -29,7 +29,7 @@ add_action( 'wp_footer', function(){
 });
 ```
 
-#### Using Static Methods :-1: 
+- #### Using Static Methods :-1: 
 With the Static Methods approach, at least your class is loaded at the proper time, but quite often, from a design standpoint, it's better to stick to non-static methods. You can't override them, they are more difficult to test and you end up having to design other things around it as static too. 
 ```php
 class Any_Class{
