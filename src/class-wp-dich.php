@@ -73,30 +73,15 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 			) {
 				$object                = $this->di_container->get( $object_alias );
 				$final_function_to_add = array( $object, $callback[1] );
+			} else {
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+					if ( is_array( $callback ) && is_string( $callback[0] ) ) {
+						error_log( sprintf( 'WP_DICH Container doesn\'t have a value stored for the "%s" key.', $object_alias ) );
+					}
+				}
 			}
 			return $final_function_to_add;
 		}
-
-		/**
-		 * callable_is_valid_for_container.
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $function_to_add
-		 *
-		 * @return bool|\WP_Error
-		 */
-		/*private function check_if_callable_is_valid_for_container( $function_to_add ) {
-			if (
-				false !== ( $obj_alias = $this->get_object_alias( $function_to_add ) ) ||
-				! $this->di_container->has( $obj_alias )
-			) {
-				return new \WP_Error( 'wp_dich_no_value_found', sprintf( 'Container doesn\'t have a value stored for the "%s" key.', $obj_alias ) );
-			} else {
-				return true;
-			}
-		}*/
 
 		/**
 		 * add_action.
@@ -135,12 +120,6 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		 * @return \WP_Error|boolean
 		 */
 		public function add_filter( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
-			/*if (
-				false !== ( $obj_alias = $this->get_object_alias( $function_to_add ) ) ||
-				! $this->di_container->has( $obj_alias )
-			) {
-				return new \WP_Error( 'wp_dich_no_value_found', sprintf( 'Container doesn\'t have a value stored for the "%s" key.', $obj_alias ) );
-			}*/
 			$this->remove_from_callbacks( $tag, $function_to_add, $priority );
 			return add_filter( $tag, function () use ( $tag, $function_to_add, $priority ) {
 				if ( $this->need_to_remove( $function_to_add, $tag, $priority ) ) {
@@ -165,6 +144,7 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		 * @return bool
 		 */
 		private function need_to_remove( $function_to_add, $tag, $priority = 10 ) {
+			$function_to_add   = $this->modify_callback_if_string( $function_to_add );
 			$function_to_add[] = $priority;
 			return in_array( $function_to_add, $this->callbacks[ $tag ] );
 		}
@@ -180,11 +160,29 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		 */
 		private function remove_from_callbacks( $tag, $function_to_add, $priority ) {
 			! isset( $this->callbacks[ $tag ] ) ? $this->callbacks[ $tag ] = array() : $this->callbacks[ $tag ];
+			$function_to_add   = $this->modify_callback_if_string( $function_to_add );
 			$function_to_add[] = $priority;
 			$found             = array_search( $function_to_add, $this->callbacks[ $tag ] );
 			if ( false !== $found ) {
 				unset( $this->callbacks[ $tag ][ $found ] );
 			}
+		}
+
+		/**
+		 * modify_callback_if_string.
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $callback
+		 *
+		 * @return array|string
+		 */
+		private function modify_callback_if_string( $callback ) {
+			if ( is_string( $callback ) ) {
+				$callback = array( $callback );
+			}
+			return $callback;
 		}
 
 		/**
@@ -198,6 +196,7 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		 * @param int $priority
 		 */
 		public function remove_filter( $tag, $function_to_remove, $priority = 10 ) {
+			$function_to_remove        = $this->modify_callback_if_string( $function_to_remove );
 			$function_to_remove[]      = $priority;
 			$this->callbacks[ $tag ][] = $function_to_remove;
 			$this->callbacks[ $tag ]   = array_unique( $this->callbacks[ $tag ], SORT_REGULAR );
