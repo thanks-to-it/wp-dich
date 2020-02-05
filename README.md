@@ -1,5 +1,5 @@
 # WP_DICH
-**WP_DICH** offers a way to use WordPress hooks in a smart way, allowing lazy loading, making classes to be loaded only when required.
+**WP_DICH** offers a way to work with WordPress hooks smartly using a Dependency Injection Container, allowing lazy loading, making classes to be loaded only when required.
 
 ## The Challenge
 Let's suppose you simply want to call a method `method_a()` from a class `Any_Class` only when a specific WordPress hook is run. How would you do it? There are at least 3 ways that come to my mind: 
