@@ -69,7 +69,7 @@ You can use the WordPress hook functions you are used to, like:
 - `$dich->remove_filter`
 
 ## Services
-As we are now using a Dependency Injection Container Library we may benefit from some interesting features, like services, allowing to instantiate your classes only once. Yes, no need to think about Singletons anymore.
+As we are using a Dependency Injection Container Library we may benefit from some interesting features, like services, allowing to instantiate your classes only once. Yes, no need to think about Singletons anymore.
 
 ```php
 $dic['any_class_alias'] = $dic->service( function () {
