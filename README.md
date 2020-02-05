@@ -78,3 +78,15 @@ $dic['any_class_alias'] = $dic->service( function () {
 } );
 ```
 Now everytime you call for **'any_class_alias'** the same object will be returned instead of creating a new one every time.
+
+
+## Installation
+**Composer**
+Add `thanks-to-it/wp-dich` to the require-dev or require section of your project's `composer.json` configuration file, and run 'composer install':
+```json
+{
+    "require": {
+        "thanks-to-it/wp-dich":"dev-master"
+    }
+}
+```
