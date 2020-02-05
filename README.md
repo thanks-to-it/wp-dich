@@ -1,7 +1,4 @@
 # WP_DICH
-Dependency Injection Container for WordPress Hooks
-
-## Introduction
 **WP_DICH** offers a way to use WordPress hooks in a smart way, allowing lazy loading, making classes be loaded only when required.
 
 ## The Challenge
