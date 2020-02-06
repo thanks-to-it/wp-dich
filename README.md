@@ -47,7 +47,7 @@ First you need to pass a Dependency Injection Container Interface to `WP_DICH()`
 $dic  = new \Thanks_To_IT\WP_DICH\DIC();
 $dich = new \Thanks_To_IT\WP_DICH\WP_DICH( $dic );
 ```
-> WP_DICH already offers a small Dependency Injection Container, thanks to [Carl Alexander](https://carlalexander.ca/dependency-injection-wordpress/), but you can use any library you want, like [thephpleague/container](https://github.com/thephpleague/container) or [php-di](http://php-di.org/) for example. You just have to implement a `DIC_Interface` with 2 methods, `get()` and `has()`
+> WP_DICH already offers a small Dependency Injection Container, thanks to [Carl Alexander](https://carlalexander.ca/dependency-injection-wordpress/), but you can use any library you want, like [thephpleague/container](https://github.com/thephpleague/container) or [php-di](http://php-di.org/) for example. You just have to implement a `Psr\Container\ContainerInterface` with 2 methods, `get()` and `has()`
 
 Then you just have to setup your container as you like:
 ```php

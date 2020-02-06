@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Psr\\Container\\ContainerExceptionInterface' => $vendorDir . '/psr/container/src/ContainerExceptionInterface.php',
+    'Psr\\Container\\ContainerInterface' => $vendorDir . '/psr/container/src/ContainerInterface.php',
+    'Psr\\Container\\NotFoundExceptionInterface' => $vendorDir . '/psr/container/src/NotFoundExceptionInterface.php',
     'Thanks_To_IT\\WP_DICH\\DIC' => $baseDir . '/src/class-dic.php',
     'Thanks_To_IT\\WP_DICH\\DIC_Interface' => $baseDir . '/src/class-dic-interface.php',
     'Thanks_To_IT\\WP_DICH\\League_Container_DIC' => $baseDir . '/src/class-league-container-dic.php',

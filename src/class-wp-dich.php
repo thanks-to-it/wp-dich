@@ -9,6 +9,8 @@
 
 namespace Thanks_To_IT\WP_DICH;
 
+use Psr\Container\ContainerInterface;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
@@ -26,9 +28,9 @@ if ( ! class_exists( 'Thanks_To_IT\WP_DICH\WP_DICH' ) ) {
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 *
-		 * @param DIC_Interface $di_container
+		 * @param ContainerInterface $di_container
 		 */
-		public function __construct( DIC_Interface $di_container ) {
+		public function __construct( ContainerInterface $di_container ) {
 			$this->di_container = $di_container;
 		}
 

@@ -12,6 +12,7 @@
 namespace Thanks_To_IT\WP_DICH;
 
 use League\Container\Definition\DefinitionInterface;
+use Psr\Container\ContainerInterface;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -19,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'Thanks_To_IT\WP_DICH\League_Container_DIC' ) ) {
 
-	class League_Container_DIC extends \League\Container\Container implements DIC_Interface {
+	class League_Container_DIC extends \League\Container\Container implements ContainerInterface {
 
 		/**
 		 * {@inheritdoc}

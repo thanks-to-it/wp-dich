@@ -11,13 +11,15 @@
 
 namespace Thanks_To_IT\WP_DICH;
 
+use Psr\Container\ContainerInterface;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
 if ( ! class_exists( 'Thanks_To_IT\WP_DICH\DIC' ) ) {
 
-	class DIC implements \ArrayAccess, DIC_Interface {
+	class DIC implements \ArrayAccess, ContainerInterface {
 		/**
 		 * Values stored inside the container.
 		 *

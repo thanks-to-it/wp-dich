@@ -6,7 +6,24 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit24763ad7f72f50fe3e9148680f2cd91d
 {
+    public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'Psr\\Container\\' => 14,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+    );
+
     public static $classMap = array (
+        'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
+        'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
+        'Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
         'Thanks_To_IT\\WP_DICH\\DIC' => __DIR__ . '/../..' . '/src/class-dic.php',
         'Thanks_To_IT\\WP_DICH\\DIC_Interface' => __DIR__ . '/../..' . '/src/class-dic-interface.php',
         'Thanks_To_IT\\WP_DICH\\League_Container_DIC' => __DIR__ . '/../..' . '/src/class-league-container-dic.php',
@@ -16,6 +33,8 @@ class ComposerStaticInit24763ad7f72f50fe3e9148680f2cd91d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit24763ad7f72f50fe3e9148680f2cd91d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit24763ad7f72f50fe3e9148680f2cd91d::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit24763ad7f72f50fe3e9148680f2cd91d::$classMap;
 
         }, null, ClassLoader::class);
